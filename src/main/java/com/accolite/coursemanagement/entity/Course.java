@@ -24,7 +24,7 @@ public class Course {
     private String prerequisite;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "courseId")
-    private List<Creator> creators;
+    private List<Trainer> trainers;
     @JoinColumn(name = "courseId")
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Skill> skills;

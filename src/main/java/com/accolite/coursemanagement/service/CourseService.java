@@ -2,10 +2,10 @@ package com.accolite.coursemanagement.service;
 
 import com.accolite.coursemanagement.Dto.CourseDto;
 import com.accolite.coursemanagement.entity.Course;
-import com.accolite.coursemanagement.entity.Creator;
+import com.accolite.coursemanagement.entity.Trainer;
 import com.accolite.coursemanagement.entity.Skill;
 import com.accolite.coursemanagement.repository.CourseRepository;
-import com.accolite.coursemanagement.repository.CreatorRepository;
+import com.accolite.coursemanagement.repository.TrainerRepository;
 import com.accolite.coursemanagement.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class CourseService {
     @Autowired
     SkillRepository skillRepository;
     @Autowired
-    CreatorRepository creatorRepository;
+    TrainerRepository trainerRepository;
 
 
     public void addCourse(CourseDto courseDto){
@@ -36,12 +36,12 @@ public class CourseService {
             skills.add(new Skill(courseDto.getSkills().get(i)));
 
         }
-        ArrayList<Creator> creators = new ArrayList<>();
-        for (int i = 0; i < courseDto.getCreators().size(); i++) {
-            creators.add(new Creator(courseDto.getCreators().get(i)));
+        ArrayList<Trainer> trainers = new ArrayList<>();
+        for (int i = 0; i < courseDto.getTrainers().size(); i++) {
+            trainers.add(new Trainer(courseDto.getTrainers().get(i)));
         }
         course.setSkills(skills);
-        course.setCreators(creators);
+        course.setTrainers(trainers);
         courseRepository.save(course);
         System.out.println("done");
 
@@ -74,12 +74,12 @@ public class CourseService {
             skills.add(new Skill(courseDto.getSkills().get(i)));
 
         }
-        ArrayList<Creator> creators = new ArrayList<>();
-        for (int i = 0; i < courseDto.getCreators().size(); i++) {
-            creators.add(new Creator(courseDto.getCreators().get(i)));
+        ArrayList<Trainer> trainers = new ArrayList<>();
+        for (int i = 0; i < courseDto.getTrainers().size(); i++) {
+            trainers.add(new Trainer(courseDto.getTrainers().get(i)));
         }
         course.setSkills(skills);
-        course.setCreators(creators);
+        course.setTrainers(trainers);
         return course;
 
     }
@@ -89,7 +89,7 @@ public class CourseService {
     }
 
     public List<Course> getCourseByTrainer(String trainerName) {
-        return courseRepository.findCourseByCreator(trainerName);
+        return courseRepository.findCourseByTrainer(trainerName);
     }
 
     public List<Course> getCourseBySkill(String skillName) {

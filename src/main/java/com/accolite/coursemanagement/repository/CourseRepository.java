@@ -13,9 +13,9 @@ public interface CourseRepository extends JpaRepository<Course,Long> {
     List<Course> findCourseByLocation(String location);
 
 
-    String findByCreator ="select * from coursemanagement.course join coursemanagement.creator on coursemanagement.course.id=coursemanagement.creator.course_id where coursemanagement.creator.name=?";
-    @Query(value = findByCreator,nativeQuery = true)
-    List<Course> findCourseByCreator(String trainerName);
+    String findByTrainer ="select * from coursemanagement.course join coursemanagement.trainer on coursemanagement.course.id=coursemanagement.trainer.course_id where coursemanagement.trainer.name=?";
+    @Query(value = findByTrainer,nativeQuery = true)
+    List<Course> findCourseByTrainer(String trainerName);
 
     String findBySkill ="select * from coursemanagement.course join coursemanagement.skill on coursemanagement.course.id=coursemanagement.skill.course_id where coursemanagement.skill.name=?";
     @Query(value = findBySkill,nativeQuery = true)

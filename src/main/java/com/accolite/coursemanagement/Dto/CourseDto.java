@@ -1,6 +1,6 @@
 package com.accolite.coursemanagement.Dto;
 
-import com.accolite.coursemanagement.entity.Creator;
+import com.accolite.coursemanagement.entity.Trainer;
 import com.accolite.coursemanagement.entity.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +20,6 @@ public class CourseDto {
     private String location;
     private String prerequisite;
     private List<String> skills;
-    private List<String> creators;
+    private List<String> trainers;
 
 }

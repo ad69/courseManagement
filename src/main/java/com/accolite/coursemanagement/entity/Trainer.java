@@ -14,13 +14,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Data
 @Entity
-public class Creator {
+public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
 
-    public Creator(String name) {
+    public Trainer(String name) {
         this.name = name;
     }
 }
