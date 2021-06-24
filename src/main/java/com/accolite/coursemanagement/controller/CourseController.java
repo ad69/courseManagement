@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController()
 @RequestMapping("/course")
 public class CourseController {
@@ -22,6 +22,7 @@ public class CourseController {
 
     @PostMapping
     public void addCourse(@RequestBody CourseDto courseDto){
+        System.out.println(courseDto);
         courseService.addCourse(courseDto);
     }
 

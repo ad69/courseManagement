@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 import java.util.List;
 
 
@@ -16,10 +15,10 @@ import java.util.List;
 public class CourseDto {
     private String name;
     private String feedback;
-    private Instant createdAt;
     private String location;
     private String prerequisite;
     private List<String> skills;
     private List<String> trainers;
+    private String description;
 
 }

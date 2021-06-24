@@ -21,6 +21,7 @@ public class Course {
     private Date createdAt;
     private Date updatedAt;
     private String location;
+    private String description;
     private String prerequisite;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "courseId")
@@ -28,6 +29,12 @@ public class Course {
     @JoinColumn(name = "courseId")
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Skill> skills;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<CourseMaterial> courseMaterials;
+
+
+
+
 
 
 }

@@ -31,6 +31,7 @@ public class CourseService {
         course.setLocation(courseDto.getLocation());
         course.setCreatedAt(new Date());
         course.setFeedback(courseDto.getFeedback());
+        course.setDescription(courseDto.getDescription());
         ArrayList<Skill> skills = new ArrayList<>();
         for (int i = 0; i < courseDto.getSkills().size(); i++) {
             skills.add(new Skill(courseDto.getSkills().get(i)));
