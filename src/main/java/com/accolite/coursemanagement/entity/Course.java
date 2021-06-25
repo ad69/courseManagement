@@ -29,7 +29,7 @@ public class Course {
     @JoinColumn(name = "courseId")
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Skill> skills;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "course",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<CourseMaterial> courseMaterials;
 
 

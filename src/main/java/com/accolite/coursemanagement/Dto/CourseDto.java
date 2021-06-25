@@ -5,7 +5,9 @@ import com.accolite.coursemanagement.entity.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -20,5 +22,6 @@ public class CourseDto {
     private List<String> skills;
     private List<String> trainers;
     private String description;
+    private MultipartFile[] courseMaterials;
 
 }
