@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.Objects;
+
 @Service
 public class EmailService {
     @Autowired
@@ -40,7 +42,7 @@ public class EmailService {
         MimeMessageHelper mimeMessageHelper
                 = new MimeMessageHelper(mimeMessage, true);
 
-        mimeMessageHelper.setFrom("spring.email.from@gmail.com");
+        mimeMessageHelper.setFrom("gebet50952@beydent.com");
         mimeMessageHelper.setTo(toEmail);
         mimeMessageHelper.setText(body);
         mimeMessageHelper.setSubject(subject);
@@ -48,7 +50,7 @@ public class EmailService {
         FileSystemResource fileSystem
                 = new FileSystemResource(new File(attachment));
 
-        mimeMessageHelper.addAttachment(fileSystem.getFilename(),
+        mimeMessageHelper.addAttachment(Objects.requireNonNull(fileSystem.getFilename()),
                 fileSystem);
 
         mailSender.send(mimeMessage);
