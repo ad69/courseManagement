@@ -2,31 +2,22 @@ package com.accolite.coursemanagement.controller;
 
 import com.accolite.coursemanagement.Dto.CourseDto;
 import com.accolite.coursemanagement.entity.Course;
-import com.accolite.coursemanagement.entity.Skill;
-import com.accolite.coursemanagement.entity.Trainer;
-import com.accolite.coursemanagement.repository.CourseRepository;
-import com.accolite.coursemanagement.service.CourseMaterialService;
 import com.accolite.coursemanagement.service.CourseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-
+@AllArgsConstructor
 @CrossOrigin
 @RestController()
 @RequestMapping("/course")
 public class CourseController {
 
-    @Autowired
-    private CourseService courseService;
+    private final CourseService courseService;
 
-    @Autowired
-    private CourseMaterialService courseMaterialService;
 
 
     @PostMapping
@@ -47,9 +38,9 @@ public class CourseController {
         Optional<Course> course = courseService.getCourseById(courseId);
         if (course.isPresent()) {
             System.out.println(course);
-            return new ResponseEntity<>(course, HttpStatus.OK);
+            return new ResponseEntity(course, HttpStatus.OK);
         }
-        return new ResponseEntity("Course Not Found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Course Not Found", HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{courseId}")
@@ -91,6 +82,13 @@ public class CourseController {
     public List<Course> getLatestCourse() {
         return courseService.getLatestCourse();
     }
+
+//    @PostMapping(value = "/add",consumes = {"multipart/form-data"})
+//    public void addCourse2(@RequestPart("courseDto") CourseDto courseDto, @RequestPart("file") MultipartFile file){
+//        System.out.println(courseDto);
+//        System.out.println(file.getName());
+//
+//    }
 
 
 }

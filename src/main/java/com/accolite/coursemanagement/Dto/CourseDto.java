@@ -22,6 +22,6 @@ public class CourseDto {
     private List<String> skills;
     private List<String> trainers;
     private String description;
-    private MultipartFile[] courseMaterials;
+//    private MultipartFile[] courseMaterials;
 
 }

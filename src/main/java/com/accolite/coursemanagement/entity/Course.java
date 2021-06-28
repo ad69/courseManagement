@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +34,6 @@ public class Course {
     private List<CourseMaterial> courseMaterials;
 
 
-
-
-
-
+    public Course(int i, String addy, String s, Date date, Date date1, String banglore, String s1, String s2, ArrayList<Skill> skills, ArrayList<Trainer> trainers) {
+    }
 }

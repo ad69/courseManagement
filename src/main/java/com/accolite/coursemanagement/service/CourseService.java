@@ -7,6 +7,7 @@ import com.accolite.coursemanagement.entity.Skill;
 import com.accolite.coursemanagement.repository.CourseRepository;
 import com.accolite.coursemanagement.repository.TrainerRepository;
 import com.accolite.coursemanagement.repository.SkillRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,35 +17,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CourseService {
-    @Autowired
-    CourseRepository courseRepository;
-    @Autowired
-    SkillRepository skillRepository;
-    @Autowired
-    TrainerRepository trainerRepository;
+
+    private final CourseRepository courseRepository;
 
 
     public void addCourse(CourseDto courseDto){
-        Course course=new Course();
-        course.setName(courseDto.getName());
-        course.setLocation(courseDto.getLocation());
-        course.setCreatedAt(new Date());
-        course.setFeedback(courseDto.getFeedback());
-        course.setDescription(courseDto.getDescription());
-        ArrayList<Skill> skills = new ArrayList<>();
-        for (int i = 0; i < courseDto.getSkills().size(); i++) {
-            skills.add(new Skill(courseDto.getSkills().get(i)));
-
-        }
-        ArrayList<Trainer> trainers = new ArrayList<>();
-        for (int i = 0; i < courseDto.getTrainers().size(); i++) {
-            trainers.add(new Trainer(courseDto.getTrainers().get(i)));
-        }
-        course.setSkills(skills);
-        course.setTrainers(trainers);
+        Course course = mapDtoToObject(courseDto);
+//        System.out.println(course);
         courseRepository.save(course);
-        System.out.println("done");
 
     }
 
@@ -66,7 +48,7 @@ public class CourseService {
     }
 
 
-    public Course dtoToObject(CourseDto courseDto){
+    public Course mapDtoToObject(CourseDto courseDto){
         Course course=new Course();
         course.setName(courseDto.getName());
         course.setLocation(courseDto.getLocation());
