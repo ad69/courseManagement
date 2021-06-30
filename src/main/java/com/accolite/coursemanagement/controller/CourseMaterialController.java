@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api/material")
 public class CourseMaterialController {
     @Autowired
     private CourseMaterialService courseMaterialService;
@@ -38,7 +39,7 @@ public class CourseMaterialController {
     }
 
 
-    @GetMapping("/material")
+    @GetMapping("/")
     public ResponseEntity<List<ResponseFile>> getAllMaterial() {
         List<ResponseFile> files = courseMaterialService.getAllMaterials().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
@@ -57,7 +58,7 @@ public class CourseMaterialController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @GetMapping("/material/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<byte[]> getMaterial(@PathVariable String id) {
         CourseMaterial material = courseMaterialService.getMaterial(id);
         return ResponseEntity.ok()
@@ -65,7 +66,7 @@ public class CourseMaterialController {
                 .body(material.getData());
     }
 
-    @GetMapping("/course/material/{courseId}")
+    @GetMapping("/course/{courseId}")
     public ResponseEntity<List<ResponseFile>> getMaterialByCourse(@PathVariable long courseId){
         List<ResponseFile> files = courseMaterialService.getMaterialByCourse(courseId).map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
