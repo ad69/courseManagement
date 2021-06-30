@@ -24,4 +24,7 @@ public interface CourseRepository extends JpaRepository<Course,Long> {
     String findLatest="select * from course order by created_at desc";
     @Query(value = findLatest,nativeQuery = true)
     List<Course> findLatestCourse();
+    String findById ="select * from course where id=?";
+    @Query(value = findById,nativeQuery = true)
+    Course findOne(Long id);
 }

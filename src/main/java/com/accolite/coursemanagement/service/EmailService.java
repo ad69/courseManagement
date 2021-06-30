@@ -1,5 +1,6 @@
 package com.accolite.coursemanagement.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,9 +15,9 @@ import java.io.File;
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class EmailService {
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
     @Async
     public void sendSimpleEmail(String toEmail,
                                 String body,

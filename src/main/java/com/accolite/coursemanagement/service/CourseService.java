@@ -26,6 +26,7 @@ public class CourseService {
     public void addCourse(CourseDto courseDto){
         Course course = mapDtoToObject(courseDto);
 //        System.out.println(course);
+        course.setCreatedAt(new Date());
         courseRepository.save(course);
 
     }

@@ -9,6 +9,7 @@ import com.accolite.coursemanagement.repository.CourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,12 +58,38 @@ public class CourseServiceTest {
         assertEquals(1,courseService.getCourseByLocation(location).size());
     }
 
+    @Test
+    void getCourseByTrainer(){
+        String trainerName="me";
+        Course course = new Course(1,"spring boot","", new Date(),new Date(),"location","","", new ArrayList<Trainer>(), new ArrayList<Skill>(),new ArrayList<CourseMaterial>());
+        Mockito.when(courseRepository.findCourseByTrainer(trainerName)).thenReturn(Arrays.asList(course));
+        assertEquals(1,courseService.getCourseByTrainer(trainerName).size());
+
+    }
 
     @Test
-    void addCourse(){
-        CourseDto courseDto = new CourseDto("spring boot","","","",new ArrayList<String>(),new ArrayList<String>(),"");
-        Course course = new Course(1,"spring boot","", new Date(),new Date(),"nagpur","","", new ArrayList<Skill>(), new ArrayList<Trainer>());
-        courseService.addCourse(courseDto);
-        Mockito.verify(courseRepository,Mockito.times(1)).save(course);
+    void getCourseBySkill(){
+        String skillName="java";
+        Course course = new Course(1,"spring boot","", new Date(),new Date(),"location","","", new ArrayList<Trainer>(), new ArrayList<Skill>(),new ArrayList<CourseMaterial>());
+        Mockito.when(courseRepository.findCourseBySkill(skillName)).thenReturn(Arrays.asList(course));
+        assertEquals(1,courseService.getCourseBySkill(skillName).size());
     }
+
+
+    @Test
+    void deleteCourseById() {
+        Long id=15L;
+        courseService.deleteCourseById(id);
+        Mockito.verify(courseRepository,Mockito.times(1)).deleteById(id);
+    }
+
+
+    @Test
+    void getLatestCourse(){
+        Course course = new Course(1,"spring boot","", new Date(),new Date(),"location","","", new ArrayList<Trainer>(), new ArrayList<Skill>(),new ArrayList<CourseMaterial>());
+        Mockito.when(courseRepository.findLatestCourse()).thenReturn(Arrays.asList(course));
+        assertEquals(1,courseService.getLatestCourse().size());
+
+    }
+
 }

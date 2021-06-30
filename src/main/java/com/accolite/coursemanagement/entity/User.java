@@ -1,15 +1,18 @@
 package com.accolite.coursemanagement.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+import javax.persistence.*;
+
+@Data
+@MappedSuperclass
 public class User {
-    @Id@GeneratedValue( strategy = GenerationType.IDENTITY)
-    private long id;
-    private String email;
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    protected long id;
+    protected String email;
 
 
 }

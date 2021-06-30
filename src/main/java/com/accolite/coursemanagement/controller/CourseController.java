@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.PreRemove;
 import java.util.*;
 @AllArgsConstructor
 @CrossOrigin
@@ -42,7 +43,6 @@ public class CourseController {
         }
         return new ResponseEntity<>("Course Not Found", HttpStatus.NOT_FOUND);
     }
-
     @DeleteMapping("/{courseId}")
     public ResponseEntity<String> deleteCourseById(@PathVariable long courseId) {
         Optional<Course> course = courseService.getCourseById(courseId);
@@ -83,8 +83,8 @@ public class CourseController {
         return courseService.getLatestCourse();
     }
 
-//    @PostMapping(value = "/add",consumes = {"multipart/form-data"})
-//    public void addCourse2(@RequestPart("courseDto") CourseDto courseDto, @RequestPart("file") MultipartFile file){
+//    @PostMapping(value = "/add")
+//    public void addCourse2(@RequestParam(value = "courseDto") CourseDto courseDto, @RequestParam(value = "file") MultipartFile file){
 //        System.out.println(courseDto);
 //        System.out.println(file.getName());
 //
